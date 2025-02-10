@@ -2,11 +2,11 @@ import React from 'react'
 import '@fortawesome/fontawesome-free/css/all.min.css'; 
 
 
-export default function TodoCard() {
+export default function TodoCard({ children }) {
   return (
     <li className='todoitem'>
             <div className='actionsContainer'>
-
+            { children }
               <i className="fa-solid fa-pen-to-square"></i>
 
               <i className="fa-solid fa-trash-can"></i>
