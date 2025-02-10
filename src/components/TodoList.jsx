@@ -2,31 +2,19 @@ import React from 'react'
 import '@fortawesome/fontawesome-free/css/all.min.css'; 
 import TodoCard from "./TodoCard"; 
 
-export default function TodoList() {
-
-  let todos =[
-    'Go to the gym',
-    'Buy food',
-    'File the tax'
-  ];
-
+export default function TodoList({ todos = [] }) {
 
   return (
     <ul className='main'>
-      {todos.map((todo, index) => {
-        return (
-         <TodoCard key={index}>
-          <p>{todo}</p>
-         </TodoCard>
-
-         /*
-          <li className='todoitem' key={index}>
-            {todo} 
-            <i className="fa-solid fa-pen-to-square"></i>
-          </li>
-          */
-        )
-      })}
+      {todos.length > 0 ? (  // ✅ Ensure todos exist before mapping
+        todos.map((todo, index) => (
+          <TodoCard key={index}>
+            <p>{todo}</p>
+          </TodoCard>
+        ))
+      ) : (
+        <p>No todos available.</p>  // ✅ Display a message if list is empty
+      )}
     </ul>
   )
 }
