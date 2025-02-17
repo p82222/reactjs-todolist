@@ -7,18 +7,26 @@ function App() {
   const [todos, setTodos] = useState([])
 
   function updateAddTodos(newTodo){
-
     const newTodoList = [...todos,newTodo]
     setTodos(newTodoList)
-
   }
+
+
+  function deleteTodos(index){
+    const newTodoList = todos.filter((todo, todoIndex) => {
+      return todoIndex !== index
+    })
+    setTodos(newTodoList)
+  }
+
+  function editTodos(){}
 
   return (
     <>
       {/* <TodoInput />*/}
       <TodoInput updateAddTodos = {updateAddTodos} />
        {/* <TodoList />*/}
-       <TodoList todos = {todos}/>
+       <TodoList deleteTodos = {deleteTodos} todos = {todos}/>
     </>
   );
 }

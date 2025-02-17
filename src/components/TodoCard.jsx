@@ -2,14 +2,22 @@ import React from 'react'
 import '@fortawesome/fontawesome-free/css/all.min.css'; 
 
 
-export default function TodoCard({ children }) {
+export default function TodoCard({ children, deleteTodos, index }) {
   return (
     <li className='todoitem'>
             <div className='actionsContainer'>
-            { children }
-              <i className="fa-solid fa-pen-to-square"></i>
+              { children }
+              <button>
+                <i className="fa-solid fa-pen-to-square"></i>
+              </button>
 
-              <i className="fa-solid fa-trash-can"></i>
+              <button onClick={() => {
+                if(deleteTodos){                
+                  deleteTodos(index)
+                }
+              }}>
+                <i className="fa-solid fa-trash-can"></i>
+              </button>
             </div>
     </li>
   )
