@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 
-export default function TodoInput({ updateAddTodos }) {
-
-  const [todoValue, setTodoValue] = useState('');
+export default function TodoInput({ updateAddTodos, todoValue, setTodoValue }) {
 
   const handleAddTodo =()=> {
     if(todoValue.trim() == '') return; //checking if input is empty

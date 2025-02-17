@@ -5,10 +5,22 @@ import TodoList from "./components/TodoList";
 function App() {
 
   const [todos, setTodos] = useState([])
+  const [todoValue, setTodoValue] = useState('') 
+  const [editingIndex, setEditingIndex] = useState(null) 
 
   function updateAddTodos(newTodo){
-    const newTodoList = [...todos,newTodo]
-    setTodos(newTodoList)
+    
+    if(editingIndex !== null){
+      const newTodoList = todos.map((todo, index)=>
+        index === editingIndex? newTodo:todo
+      )
+      setTodos(newTodoList)
+      setEditingIndex(null)
+    }else{
+      setTodos([...todos, newTodo])
+
+    }
+    setTodoValue("")
   }
 
 
@@ -19,14 +31,18 @@ function App() {
     setTodos(newTodoList)
   }
 
-  function editTodos(){}
+  function editTodos(index){
+    const valueToBeEdited = todos[index]
+    setTodoValue(valueToBeEdited)
+    setEditingIndex(index)
+  }
 
   return (
     <>
       {/* <TodoInput />*/}
-      <TodoInput updateAddTodos = {updateAddTodos} />
+      <TodoInput todoValue = {todoValue} setTodoValue = {setTodoValue} updateAddTodos = {updateAddTodos} />
        {/* <TodoList />*/}
-       <TodoList deleteTodos = {deleteTodos} todos = {todos}/>
+       <TodoList editTodos = {editTodos} deleteTodos = {deleteTodos} todos = {todos}/>
     </>
   );
 }

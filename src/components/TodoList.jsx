@@ -2,7 +2,7 @@ import React from 'react'
 import '@fortawesome/fontawesome-free/css/all.min.css'; 
 import TodoCard from "./TodoCard"; 
 
-export default function TodoList({ todos = [], deleteTodos }) {
+export default function TodoList({ todos = [], deleteTodos, editTodos }) {
 
   return (
     <ul className='main'>
@@ -12,6 +12,7 @@ export default function TodoList({ todos = [], deleteTodos }) {
           key={todoIndex} 
           index ={todoIndex}
           deleteTodos ={deleteTodos}
+          editTodos = {editTodos}
           >
             <p>{todo}</p>
           </TodoCard>
