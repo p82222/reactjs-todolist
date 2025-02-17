@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import TodoInput from './components/TodoInput';
 import TodoList from "./components/TodoList";
 
@@ -8,19 +8,29 @@ function App() {
   const [todoValue, setTodoValue] = useState('') 
   const [editingIndex, setEditingIndex] = useState(null) 
 
-  function updateAddTodos(newTodo){
-    
-    if(editingIndex !== null){
-      const newTodoList = todos.map((todo, index)=>
-        index === editingIndex? newTodo:todo
-      )
-      setTodos(newTodoList)
-      setEditingIndex(null)
+  function persistData(newList){
+    if(Array.isArray(newList)){
+      localStorage.setItem('todos', JSON.stringify({todos : newList}))
     }else{
-      setTodos([...todos, newTodo])
-
+      console.error("persistData: newList is not an array!", newList)
     }
-    setTodoValue("")
+  }
+
+  function updateAddTodos(newTodo){
+    let newTodoList = [...todos]; //Always initialize newTodoList as an array
+
+    if(editingIndex !== null){
+      newTodoList = newTodoList.map((todo, index) =>
+          index === editingIndex ? newTodo : todo
+      ); 
+      setEditingIndex(null);
+  }else{
+      newTodoList.push(newTodo);
+  }
+
+  setTodos(newTodoList);
+  persistData(newTodoList);
+  setTodoValue("");
   }
 
 
@@ -28,6 +38,7 @@ function App() {
     const newTodoList = todos.filter((todo, todoIndex) => {
       return todoIndex !== index
     })
+    persistData(newTodoList)
     setTodos(newTodoList)
   }
 
@@ -37,9 +48,31 @@ function App() {
     setEditingIndex(index)
   }
 
+  function clearTodos(){
+    localStorage.removeItem('todos')
+    setTodos([])
+  }
+
+  useEffect(() => {
+    let localTodos = localStorage.getItem('todos')
+
+    if (!localTodos) return; //check if there's no saved data
+    try {
+        localTodos = JSON.parse(localTodos).todos;
+        if (Array.isArray(localTodos)) {
+            setTodos(localTodos);
+        } else {
+            console.error("Invalid todos format in localStorage!", localTodos);
+        }
+    } catch (error) {
+        console.error("Error parsing localStorage data", error);
+    }
+  }, [])
+
   return (
     <>
       {/* <TodoInput />*/}
+      <button onClick={clearTodos}>Clear All Todos</button>
       <TodoInput todoValue = {todoValue} setTodoValue = {setTodoValue} updateAddTodos = {updateAddTodos} />
        {/* <TodoList />*/}
        <TodoList editTodos = {editTodos} deleteTodos = {deleteTodos} todos = {todos}/>
