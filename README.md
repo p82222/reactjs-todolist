@@ -1,8 +1,28 @@
-# React + Vite
+# React Todo List App 📝
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+🚀 Live Demo: [react-todolist-app-cyl.netlify.app](https://react-todolist-app-cyl.netlify.app)  
+📂 GitHub Repo: [github.com/p82222/reactjs-todolist](https://github.com/p82222/reactjs-todolist)
 
-Currently, two official plugins are available:
+## 📌 Project Overview
+This is a simple **React-based Todo List App** where users can **add, edit, delete, and persist their tasks**.  
+It is built using **React Hooks (useState, useEffect)** for state management and stores data in **localStorage** for persistence.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## ✨ Features
+✔️ Add new tasks  
+✔️ Edit existing tasks  
+✔️ Delete tasks  
+✔️ Persistent storage using **localStorage**  
+✔️ Responsive UI with **CSS & FontAwesome icons**  
+
+## 🛠️ Tech Stack
+- **Frontend:** React, JavaScript, HTML, CSS  
+- **Icons:** FontAwesome  
+- **State Management:** useState, useEffect  
+- **Storage:** LocalStorage  
+- **Deployment:** Netlify  
+
+## 🚀 Getting Started
+### Clone the repository
+```sh
+git clone https://github.com/p82222/reactjs-todolist.git
+cd reactjs-todolist
