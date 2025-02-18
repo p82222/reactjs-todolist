@@ -26,3 +26,15 @@ It is built using **React Hooks (useState, useEffect)** for state management and
 ```sh
 git clone https://github.com/p82222/reactjs-todolist.git
 cd reactjs-todolist
+```
+### Install dependencies
+```sh
+npm install
+```
+### Start the development server
+```sh
+npm run dev
+```
+The app will run at http://localhost:5173/
+
+
